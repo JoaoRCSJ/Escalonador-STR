@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador desenvolvido para fins avaliativos da matéria MATA82</title>
+        <link rel="stylesheet" href="/src/style.css">
+
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1> Simulador de Escalonador de Tarefas</h1>
+            <p>  Simulador desenvolvido para fins avaliativos da matéria MATA82</p>
+        </div>
+
+        <div class="content">
+            <div class="input-section">
+                <div class="input-group">
+                    <label for="numTasks">Número de Tarefas:</label>
+                    <input type="number" id="numTasks" min="1" max="20" value="3" onchange="generateTaskInputs()">
+                </div>
+
+                <div class="input-group">
+                    <label for="algorithm">Algoritmo de Escalonamento:</label>
+                    <select id="algorithm" style="width: 100%; padding: 12px; border: 2px solid #e1e5e9; border-radius: 8px; font-size: 16px;">
+                        <option value="priority">Prioridade (Priority Scheduling)</option>
+                        <option value="sjf">Menor Trabalho Primeiro (SJF)</option>
+                        <option value="edf">Deadline Mais Próximo (EDF)</option>
+                        <option value="fcfs">Primeiro a Chegar, Primeiro a Ser Servido (FCFS)</option>
+                    </select>
+                </div>
+
+                <div id="tasksContainer" class="tasks-container">
+                    <!-- Tarefas serão geradas dinamicamente aqui -->
+                </div>
+
+                <div style="text-align: center; margin-top: 20px;">
+                    <button class="btn" onclick="runScheduler()"> Executar Escalonamento</button>
+                    <button class="btn" onclick="clearResults()" style="background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);"> Limpar Resultados</button>
+                </div>
+            </div>
+
+            <div id="resultsSection" class="results-section">
+                <h2 style="margin-bottom: 20px; color: #333;"> Resultados do Escalonamento</h2>
+                
+                <div id="alertContainer"></div>
+                
+                <div class="stats">
+                    <div class="stat-card">
+                        <div id="totalTime" class="stat-value">0</div>
+                        <div class="stat-label">Tempo Total</div>
+                    </div>
+                    <div class="stat-card">
+                        <div id="completedTasks" class="stat-value">0</div>
+                        <div class="stat-label">Tarefas Concluídas</div>
+                    </div>
+                    <div class="stat-card">
+                        <div id="missedDeadlines" class="stat-value">0</div>
+                        <div class="stat-label">Deadlines Perdidos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div id="schedulability" class="stat-value">-</div>
+                        <div class="stat-label">Escalonabilidade</div>
+                    </div>
+                </div>
+
+                <div class="gantt-container">
+                    <h3 style="margin-bottom: 15px; color: #333;"> Diagrama de Gantt</h3>
+                    <div id="ganttChart" class="gantt-chart">
+                        <!-- Diagrama de Gantt será gerado aqui -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="src/scheduler.js"></script>
+</body>
+</html>
+
